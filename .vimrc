@@ -18,13 +18,23 @@ set backspace=indent,eol,start
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Toggle NERDTree
+" borrowed from the Janus vimrc
+" Without setting this, ZoomWin restores windows in a way that causes
+" equalalways behavior to be triggered the next time CommandT is used.
+" This is likely a bludgeon to solve some other issue, but it works
+set noequalalways
+
+" NERDTree configuration
+let NERDTreeIgnore=['\.rbc$', '\~$']
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
 
-" Toggle Comment
-"
+" Command-T configuration
+let g:CommandTMaxHeight=20
 
-" A better escape?
+" ZoomWin configuration
+map <Leader><Leader> :ZoomWin<CR>
+
+" lazy escape
 imap jj <Esc>
 
 " keep more history
@@ -67,14 +77,14 @@ set smartcase
 " Toggle search results with spacebar
 map <Space> :set hlsearch!<cr>
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
+" use Q for formatting per :h gq
+nnoremap Q gq
 
 " catch trailing whitespace
 set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
 
-" Swapfiles. Fuck 'em.
+" Swapfiles. Meh. Using Git instead.
 set nobackup
 set noswapfile
 set nowritebackup
@@ -146,7 +156,7 @@ endif " has("autocmd")
 
 if has("folding")
   set foldenable
-  set foldmethod=syntax
+  set foldmethod=fold-syntax
   set foldlevel=3
   set foldnestmax=2
   set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
@@ -220,6 +230,3 @@ nnoremap <C-l> <C-w>l
 
 " pinky saving remap;
 nnoremap ; :
-
-" use the full screen in full screen
-nnoremap <leader>f :set fuoptions=maxvert,maxhorz<CR> 
