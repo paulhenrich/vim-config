@@ -29,7 +29,7 @@ end #/vim_org_dl
 
 def git_sub
   git_bundles = [ 
-    "git://github.com/scrooloose/nerdtree.git",
+    "git://github.com/wycats/nerdtree.git",
     "git://github.com/tpope/vim-fugitive.git",
     "git://github.com/tpope/vim-git.git",
     "git://github.com/tpope/vim-repeat.git",
