@@ -91,7 +91,7 @@ hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=wh
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 
 " Color Column
-hi ColorColumn      guibg=#460000
+hi ColorColumn      guibg=#260026
 
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
