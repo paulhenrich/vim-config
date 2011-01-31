@@ -36,7 +36,8 @@ if has("gui_macvim")
   " mostly via Janus
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
-
+  " set a nice leader command to open in default app on osx
+  map <Leader>o :!open %<CR>
   "command-][ for indentation
   vmap <D-]> >gv
   vmap <D-[> <gv
