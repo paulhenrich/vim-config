@@ -59,7 +59,7 @@ endif
 
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
-  colorscheme ir_black
+  colorscheme vibrantink
 endif
 
 " Indentation and Tab handling
