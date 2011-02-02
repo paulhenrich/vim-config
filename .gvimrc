@@ -26,7 +26,7 @@ set guitablabel=%t
 " add a cursorline
 set cursorline
 
-set colorcolumn=+1,+2
+set colorcolumn=80,880,81
 
 colorscheme ir_black
 
