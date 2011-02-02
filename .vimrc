@@ -57,6 +57,11 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   set hlsearch
 endif
 
+"ColorScheme if terminal has colors (not in GUI)
+if (&t_Co > 7)
+  set colorscheme ir_black
+endif
+
 " Indentation and Tab handling
 set smarttab
 set expandtab
