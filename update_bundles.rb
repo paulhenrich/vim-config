@@ -43,6 +43,7 @@ def git_sub
     "git://github.com/msanders/snipmate.vim.git",
     "git://github.com/vim-scripts/ZoomWin.git",
     "git://github.com/wincent/Command-T.git",
+    "git://github.com/davidoc/taskpaper.vim.git",
   ]
 
   vim_dir     = File.dirname(__FILE__)
