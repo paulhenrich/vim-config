@@ -40,3 +40,6 @@
 [submodule "bundle/taskpaper.vim"]
 	path = bundle/taskpaper.vim
 	url = git://github.com/davidoc/taskpaper.vim.git
+[submodule "bundle/vim-simplefold"]
+	path = bundle/vim-simplefold
+	url = git://github.com/pangloss/vim-simplefold.git
