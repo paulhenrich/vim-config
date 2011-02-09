@@ -47,6 +47,10 @@ set hidden
 set visualbell
 set noerrorbells
 
+" numbers, we like them
+set number
+set colorcolumn=80,81
+
 " Syntax highlighting
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -59,7 +63,7 @@ endif
 
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
-  colorscheme vibrantink
+  colorscheme wombat256
 endif
 
 " Indentation and Tab handling
@@ -161,7 +165,7 @@ endif " has("autocmd")
 
 if has("folding")
   set foldenable
-  set foldmethod=syntax
+  set foldmethod=indent
   set foldlevel=3
   set foldnestmax=2
   set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '

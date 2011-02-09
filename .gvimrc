@@ -8,9 +8,6 @@
 " Font
 set guifont=Menlo:h13.00
 
-" numbers, we like them
-set number
-
 " Use console dialogs
 set guioptions+=c
 
@@ -25,8 +22,6 @@ set guitablabel=%t
 
 " add a cursorline
 set cursorline
-
-set colorcolumn=80,880,81
 
 colorscheme ir_black
 
