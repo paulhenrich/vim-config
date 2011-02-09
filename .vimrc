@@ -159,6 +159,10 @@ if has("autocmd")
     autocmd BufRead *.inc set filetype=php
   augroup END
 
+  augroup taskpaper
+    au! BufRead,BufNewFile *.tp   setfiletype taskpaper
+  augroup END
+
 else
   set autoindent    " always set autoindenting on
 endif " has("autocmd")
