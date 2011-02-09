@@ -13,9 +13,6 @@
 [submodule "bundle/vim-vividchalk"]
 	path = bundle/vim-vividchalk
 	url = git://github.com/tpope/vim-vividchalk.git
-[submodule "bundle/vim-align"]
-	path = bundle/vim-align
-	url = git://github.com/tsaleh/vim-align.git
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
@@ -40,6 +37,3 @@
 [submodule "bundle/taskpaper.vim"]
 	path = bundle/taskpaper.vim
 	url = git://github.com/davidoc/taskpaper.vim.git
-[submodule "bundle/vim-simplefold"]
-	path = bundle/vim-simplefold
-	url = git://github.com/pangloss/vim-simplefold.git

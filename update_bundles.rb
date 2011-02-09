@@ -35,7 +35,6 @@ def git_sub
     "git://github.com/tpope/vim-repeat.git",
     "git://github.com/tpope/vim-surround.git",
     "git://github.com/tpope/vim-vividchalk.git",
-    "git://github.com/tsaleh/vim-align.git",
     "git://github.com/telemachus/vim-perlbrew.git",
     "git://github.com/scrooloose/nerdcommenter.git",
     "git://github.com/kikijump/tslime.vim.git",
@@ -44,7 +43,6 @@ def git_sub
     "git://github.com/vim-scripts/ZoomWin.git",
     "git://github.com/wincent/Command-T.git",
     "git://github.com/davidoc/taskpaper.vim.git",
-    "git://github.com/pangloss/vim-simplefold.git",
   ]
 
   vim_dir     = File.dirname(__FILE__)
