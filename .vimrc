@@ -64,6 +64,7 @@ endif
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
   colorscheme wombat256
+  set colorcolumn=0
 endif
 
 " Indentation and Tab handling
