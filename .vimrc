@@ -65,6 +65,8 @@ endif
 if (&t_Co > 7)
   colorscheme wombat256
   set colorcolumn=0
+  "assume we can use !open
+  map <Leader>o :!open %<CR>
 endif
 
 " Indentation and Tab handling
