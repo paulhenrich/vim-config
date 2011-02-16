@@ -66,7 +66,7 @@ autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call s:UpdateNERDTree()
 
 " Don't automatically close window if NT is all that's left.
-"autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 " Optional utility function to 
 " close all open buffers on entering a window if the only
