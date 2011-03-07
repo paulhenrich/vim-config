@@ -50,6 +50,8 @@ set noerrorbells
 " numbers, we like them
 set number
 set colorcolumn=80,81
+"same for the foldcolumn
+set foldcolumn=3
 
 " Syntax highlighting
 " Switch syntax highlighting on, when the terminal has colors
@@ -148,7 +150,7 @@ if has("autocmd")
     autocmd!
     " autoindent with two spaces, always expand tabs
     autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
-    autocmd FileType javascript set ai sw=4 sts=4 et
+    autocmd FileType javascript set ai sw=2 sts=2 et
   augroup END
 
   " new HTML files get automatic boilerplate
