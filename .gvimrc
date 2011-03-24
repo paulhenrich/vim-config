@@ -6,7 +6,7 @@
 "let &columns=g:halfsize
 
 " Font
-set guifont=Menlo:h13.00
+set guifont=Menlo:h14.00
 
 " Use console dialogs
 set guioptions+=c
@@ -23,9 +23,9 @@ set guitablabel=%t
 " add a cursorline
 set cursorline
 
-colorscheme ir_black
+"colorscheme ir_black
+colorscheme summerfruit256
 
-set bg=dark
 
 if has("gui_macvim")
   " mostly via Janus

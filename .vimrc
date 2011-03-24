@@ -65,7 +65,7 @@ endif
 
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
-  colorscheme wombat256
+  colorscheme summerfruit256
   set colorcolumn=0
   "assume we can use !open
   map <Leader>o :!open %<CR>
@@ -151,6 +151,7 @@ if has("autocmd")
     " autoindent with two spaces, always expand tabs
     autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
     autocmd FileType javascript set ai sw=2 sts=2 et
+    autocmd FileType php set ai noet
   augroup END
 
   " new HTML files get automatic boilerplate
