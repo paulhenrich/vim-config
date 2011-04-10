@@ -37,3 +37,12 @@
 [submodule "bundle/taskpaper.vim"]
 	path = bundle/taskpaper.vim
 	url = git://github.com/davidoc/taskpaper.vim.git
+[submodule "bundle/vim-perlbrew"]
+	path = bundle/vim-perlbrew
+	url = git://github.com/telemachus/vim-perlbrew.git
+[submodule "bundle/jade.vim"]
+	path = bundle/jade.vim
+	url = git://github.com/vim-scripts/jade.vim.git
+[submodule "bundle/vim-haml"]
+	path = bundle/vim-haml
+	url = git://github.com/tpope/vim-haml.git

@@ -24,7 +24,9 @@ set guitablabel=%t
 set cursorline
 
 "colorscheme ir_black
-colorscheme summerfruit256
+"colorscheme summerfruit256
+set background=light
+colorscheme solarized
 
 
 if has("gui_macvim")
