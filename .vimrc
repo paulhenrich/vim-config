@@ -110,8 +110,8 @@ set showcmd
 set splitbelow
 set splitright
 
-" chill the press ENTER or type command to continue stuff
-set shortmess=atI
+" kill the splash screen
+set shortmess=I
 
 set ruler
 set undolevels=1000

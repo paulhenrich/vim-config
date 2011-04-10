@@ -9,7 +9,7 @@
 set guifont=Menlo:h14.00
 
 " Use console dialogs
-set guioptions+=c
+"set guioptions+=c
 
 " turn off side scrollbar
 set go-=L
