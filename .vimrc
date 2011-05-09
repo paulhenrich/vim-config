@@ -49,7 +49,6 @@ set noerrorbells
 
 " numbers, we like them
 set number
-set colorcolumn=80,81
 "same for the foldcolumn
 set foldcolumn=3
 
@@ -66,7 +65,6 @@ endif
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
   colorscheme summerfruit256
-  set colorcolumn=0
   "assume we can use !open
   map <Leader>o :!open %<CR>
 endif
