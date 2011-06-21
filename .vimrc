@@ -64,7 +64,8 @@ endif
 
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
-  colorscheme summerfruit256
+  "colorscheme summerfruit256
+  colorscheme ir_black
   "assume we can use !open
   map <Leader>o :!open %<CR>
 endif
