@@ -29,7 +29,6 @@ end #/vim_org_dl
 
 def git_sub
   git_bundles = [ 
-    "git://github.com/wycats/nerdtree.git",
     "git://github.com/tpope/vim-fugitive.git",
     "git://github.com/tpope/vim-git.git",
     "git://github.com/tpope/vim-repeat.git",
@@ -53,6 +52,10 @@ def git_sub
 
   git_bundles.each do |url|
     dir = url.split('/').last.sub(/\.git$/, '')
+    if File.exists?(dir)
+      puts "  Skipping #{dir}"
+      next
+    end
     puts "  Unpacking #{url} into #{dir}"
     `git submodule add #{url} bundle/#{dir}`
     FileUtils.rm_rf(File.join(dir, ".git"))
