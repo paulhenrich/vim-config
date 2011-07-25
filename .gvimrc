@@ -6,7 +6,7 @@
 "let &columns=g:halfsize
 
 " Font
-set guifont=Menlo:h14.00
+set guifont=Menlo:h15.00
 
 " Use console dialogs
 "set guioptions+=c
