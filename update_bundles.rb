@@ -46,6 +46,7 @@ def git_sub
     "git://github.com/tpope/vim-haml.git",
     "https://github.com/kchmck/vim-coffee-script.git",
     "https://github.com/tpope/vim-rails.git",
+    "git://github.com/altercation/vim-colors-solarized.git"
   ]
 
   vim_dir     = File.dirname(__FILE__)
