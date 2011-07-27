@@ -23,7 +23,8 @@ set guitablabel=%t
 " add a cursorline
 set cursorline
 
-colorscheme ir_black
+set bg=light
+colorscheme solarized
 "colorscheme summerfruit256
 "set background=light
 "colorscheme solarized
