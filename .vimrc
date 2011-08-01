@@ -41,14 +41,14 @@ imap jj <Esc>
 set history=100
 
 " show hidden buffers
-set hidden
+set nohidden
 
 " don't beep
 set visualbell
 set noerrorbells
 
 " numbers, we like them
-set number
+set relativenumber
 "same for the foldcolumn
 set foldcolumn=3
 
