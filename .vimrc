@@ -156,6 +156,9 @@ if has("autocmd")
   " new HTML files get automatic boilerplate
   au BufNewFile *.html 0r ~/.vim/templates/template.html
 
+	" noexpandtab in brownbagrx coffeescript
+	autocmd BufNewFile,BufRead ~/mamp/brownbagrx/app/assets/javascripts/* set nowrap noexpandtab tabstop=2 shiftwidth=2
+
   augroup module
     autocmd BufRead *.module set filetype=php
   augroup END
