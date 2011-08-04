@@ -24,10 +24,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" NERDTree configuration
-let NERDTreeIgnore=['\.rbc$', '\~$']
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
-
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
@@ -110,7 +106,7 @@ set splitbelow
 set splitright
 
 " kill the splash screen
-set shortmess=I
+set shortmess=atI
 
 set ruler
 set undolevels=1000
