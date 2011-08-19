@@ -140,14 +140,15 @@ if has("autocmd")
       \ endif
   augroup END
 
-  augroup myfiletypes
-    " Clear old autocmds in group
-    autocmd!
-    " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
-    autocmd FileType javascript set ai sw=2 sts=2 et
-    autocmd FileType php set ai noet
-  augroup END
+  "augroup myfiletypes "forget this... make exceptions per directory below &
+	"per file with modelines.
+    "" Clear old autocmds in group
+    "autocmd!
+    "" autoindent with two spaces, always expand tabs
+    "autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+    "autocmd FileType javascript set ai sw=2 sts=2 et
+    "autocmd FileType php set ai noet
+  "augroup END
 
   " new HTML files get automatic boilerplate
   au BufNewFile *.html 0r ~/.vim/templates/template.html
