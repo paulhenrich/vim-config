@@ -30,6 +30,9 @@ let g:CommandTMaxHeight=20
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
 
+" Ack
+map <Leader>a :Ack
+
 " lazy escape
 imap jj <Esc>
 
@@ -44,7 +47,7 @@ set visualbell
 set noerrorbells
 
 " numbers, we like them
-set relativenumber
+set number
 "same for the foldcolumn
 set foldcolumn=3
 
@@ -231,6 +234,26 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" quick toggle relative number per http://news.ycombinator.com/item?id=2907730
+" modified to default to number & skip norelativenumber
+
+if v:version >= 703
+  set number
+  let s:relativenumber = 1
+  function! <SID>ToggleRelativeNumber()
+    if s:relativenumber == 0
+      set number
+      let s:relativenumber = 1
+    elseif s:relativenumber == 1
+      set relativenumber
+      let s:relativenumber = 0
+    endif
+  endfunction
+  map <silent><F10> :call <SID>ToggleRelativeNumber()<CR>
+else
+  set number
+endif
 
 " up/down move between visual lines instead of actual lines when wrapped
 imap <silent> <Down> <C-o>gj
