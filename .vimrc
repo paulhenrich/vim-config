@@ -2,10 +2,36 @@
 set nocompatible          " We're running Vim, not Vi!
 filetype off              " Only temporarily while we load pathogen...
 
-" http://github.com/tpope/vim-pathogen
-call pathogen#runtime_append_all_bundles()
+" Load Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" map leader to comma
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'jQuery'
+Bundle 'ragtag.vim'
+
+Bundle "git://github.com/tpope/vim-fugitive.git"
+Bundle "git://github.com/tpope/vim-git.git"
+Bundle "git://github.com/tpope/vim-repeat.git"
+Bundle "git://github.com/tpope/vim-surround.git"
+Bundle "git://github.com/tpope/vim-vividchalk.git"
+Bundle "git://github.com/scrooloose/nerdcommenter.git"
+Bundle "git://github.com/vim-ruby/vim-ruby.git"
+Bundle "git://github.com/msanders/snipmate.vim.git"
+Bundle "git://github.com/vim-scripts/ZoomWin.git"
+Bundle "git://github.com/wincent/Command-T.git"
+Bundle "git://github.com/davidoc/taskpaper.vim.git"
+Bundle "git://github.com/vim-scripts/jade.vim.git"
+Bundle "git://github.com/tpope/vim-haml.git"
+Bundle "https://github.com/kchmck/vim-coffee-script.git"
+Bundle "https://github.com/tpope/vim-rails.git"
+Bundle "git://github.com/altercation/vim-colors-solarized.git"
+Bundle "https://github.com/jgdavey/vim-railscasts.git"
+Bundle "https://github.com/mileszs/ack.vim"
+
 let mapleader = ","
 
 " disallow vi commands from files
@@ -19,9 +45,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " borrowed from the Janus vimrc
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
+" seemingly necessary for zoomwin
 set noequalalways
 
 " Command-T configuration
@@ -31,7 +55,7 @@ let g:CommandTMaxHeight=20
 map <Leader><Leader> :ZoomWin<CR>
 
 " Ack
-map <Leader>a :Ack
+map <Leader>a :Ack<space>
 
 " lazy escape
 imap jj <Esc>
@@ -48,8 +72,6 @@ set noerrorbells
 
 " numbers, we like them
 set number
-"same for the foldcolumn
-set foldcolumn=3
 
 " Syntax highlighting
 " Switch syntax highlighting on, when the terminal has colors
@@ -152,9 +174,6 @@ if has("autocmd")
     "autocmd FileType javascript set ai sw=2 sts=2 et
     "autocmd FileType php set ai noet
   "augroup END
-
-  " new HTML files get automatic boilerplate
-  au BufNewFile *.html 0r ~/.vim/templates/template.html
 
 	" noexpandtab in brownbagrx coffeescript
 	autocmd BufNewFile,BufRead ~/mamp/brownbagrx/app/assets/javascripts/* set nowrap noexpandtab tabstop=2 shiftwidth=2
