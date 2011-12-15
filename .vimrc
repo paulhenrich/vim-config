@@ -31,6 +31,7 @@ Bundle "https://github.com/tpope/vim-rails.git"
 Bundle "git://github.com/altercation/vim-colors-solarized.git"
 Bundle "https://github.com/jgdavey/vim-railscasts.git"
 Bundle "https://github.com/mileszs/ack.vim"
+Bundle "https://github.com/kogakure/vim-sparkup"
 
 let mapleader = ","
 
