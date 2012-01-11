@@ -42,7 +42,7 @@ set modelines=0
 set backspace=indent,eol,start
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>ev :split $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " borrowed from the Janus vimrc
@@ -89,7 +89,7 @@ if (&t_Co > 7)
   "colorscheme summerfruit256
   colorscheme ir_black
   "assume we can use !open
-  map <Leader>o :!open %<CR>
+  map <Leader>o :w\|:!open %<CR>
 endif
 
 " Indentation and Tab handling
