@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'jQuery'
 Bundle 'ragtag.vim'
+Bundle 'AutoClose'
 
 Bundle "git://github.com/tpope/vim-fugitive.git"
 Bundle "git://github.com/tpope/vim-git.git"
@@ -32,6 +33,9 @@ Bundle "git://github.com/altercation/vim-colors-solarized.git"
 Bundle "https://github.com/jgdavey/vim-railscasts.git"
 Bundle "https://github.com/mileszs/ack.vim"
 Bundle "https://github.com/kogakure/vim-sparkup"
+Bundle "https://github.com/Lokaltog/vim-powerline"
+
+Bundle "https://github.com/vim-scripts/mayansmoke"
 
 let mapleader = ","
 
@@ -56,7 +60,7 @@ let g:CommandTMaxHeight=20
 map <Leader><Leader> :ZoomWin<CR>
 
 " Ack
-map <Leader>a :Ack<space>
+map <Leader>g :Ack<space>
 
 " lazy escape
 imap jj <Esc>
@@ -87,7 +91,8 @@ endif
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
   "colorscheme summerfruit256
-  colorscheme ir_black
+  set bg=light
+  colorscheme solarized
   "assume we can use !open
   map <Leader>o :w\|:!open %<CR>
 endif

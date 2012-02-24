@@ -23,8 +23,9 @@ set guitablabel=%t
 " add a cursorline
 set cursorline
 
-set bg=dark
-colorscheme ir_black
+set bg=light
+colorscheme solarized
+"colorscheme ir_black
 "colorscheme summerfruit256
 "set background=light
 "colorscheme solarized
@@ -35,7 +36,7 @@ if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
   " set a nice leader command to open in default app on osx
-  map <Leader>o :!open %<CR>
+  map <Leader>o :w\|:!open %<CR>
   "command-][ for indentation
   vmap <D-]> >gv
   vmap <D-[> <gv
