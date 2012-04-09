@@ -34,6 +34,8 @@ Bundle "https://github.com/jgdavey/vim-railscasts.git"
 Bundle "https://github.com/mileszs/ack.vim"
 Bundle "https://github.com/kogakure/vim-sparkup"
 Bundle "https://github.com/Lokaltog/vim-powerline"
+Bundle "https://github.com/othree/html5.vim"
+Bundle "https://github.com/tpope/vim-markdown.git"
 
 Bundle "https://github.com/vim-scripts/mayansmoke"
 
@@ -91,8 +93,8 @@ endif
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
   "colorscheme summerfruit256
-  set bg=light
-  colorscheme solarized
+  set bg=dark
+  colorscheme wombat256
   "assume we can use !open
   map <Leader>o :w\|:!open %<CR>
 endif
@@ -142,11 +144,23 @@ set shortmess=atI
 set ruler
 set undolevels=1000
 
+set scrolloff=3
 set showmatch
 
 set wildmenu
 
+set foldenable
+set foldmethod=indent
+set foldlevel=3
+set foldnestmax=2
+set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+set foldcolumn=3
+
+" automatically open folds at the starting cursor position
+" autocmd BufReadPost .foldo!
+
 " Only do this part when compiled with support for autocommands.
+
 if has("autocmd")
 
   " Enable file type detection.
@@ -180,9 +194,8 @@ if has("autocmd")
     "autocmd FileType javascript set ai sw=2 sts=2 et
     "autocmd FileType php set ai noet
   "augroup END
-
-	" noexpandtab in brownbagrx coffeescript
-	autocmd BufNewFile,BufRead ~/mamp/brownbagrx/app/assets/javascripts/* set nowrap noexpandtab tabstop=2 shiftwidth=2
+  autocmd FileType css,scss,js set foldmethod=marker foldmarker={,}
+  autocmd FileType markdown set wrap
 
   augroup module
     autocmd BufRead *.module set filetype=php
@@ -192,25 +205,10 @@ if has("autocmd")
     autocmd BufRead *.inc set filetype=php
   augroup END
 
-  augroup taskpaper
-    au! BufRead,BufNewFile *.tp   setfiletype taskpaper
-  augroup END
 
 else
   set autoindent    " always set autoindenting on
 endif " has("autocmd")
-
-if has("folding")
-  set foldenable
-  set foldmethod=indent
-  set foldlevel=3
-  set foldnestmax=2
-  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-  set foldcolumn=0
-
-  " automatically open folds at the starting cursor position
-  " autocmd BufReadPost .foldo!
-endif
 
 " Load matchit (% to bounce from do to end, etc.)
 runtime! macros/matchit.vim
