@@ -11,21 +11,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'jQuery'
-Bundle 'ragtag.vim'
-Bundle 'AutoClose'
-
 Bundle "git://github.com/tpope/vim-fugitive.git"
 Bundle "git://github.com/tpope/vim-git.git"
 Bundle "git://github.com/tpope/vim-repeat.git"
 Bundle "git://github.com/tpope/vim-surround.git"
 Bundle "git://github.com/tpope/vim-vividchalk.git"
-Bundle "git://github.com/scrooloose/nerdcommenter.git"
 Bundle "git://github.com/vim-ruby/vim-ruby.git"
 Bundle "git://github.com/msanders/snipmate.vim.git"
 Bundle "git://github.com/vim-scripts/ZoomWin.git"
-Bundle "git://github.com/wincent/Command-T.git"
-Bundle "git://github.com/davidoc/taskpaper.vim.git"
-Bundle "git://github.com/vim-scripts/jade.vim.git"
 Bundle "git://github.com/tpope/vim-haml.git"
 Bundle "https://github.com/kchmck/vim-coffee-script.git"
 Bundle "https://github.com/tpope/vim-rails.git"
@@ -36,8 +29,10 @@ Bundle "https://github.com/kogakure/vim-sparkup"
 Bundle "https://github.com/Lokaltog/vim-powerline"
 Bundle "https://github.com/othree/html5.vim"
 Bundle "https://github.com/tpope/vim-markdown.git"
-
 Bundle "https://github.com/vim-scripts/mayansmoke"
+Bundle "git://github.com/tpope/vim-endwise.git"
+Bundle "git://github.com/ervandew/supertab.git"
+Bundle "https://github.com/kien/ctrlp.vim.git"
 
 let mapleader = ","
 
@@ -56,10 +51,34 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 set noequalalways
 
 " Command-T configuration
-let g:CommandTMaxHeight=20
+"let g:CommandTMaxHeight=20
+
+" Ctrl-P config
+map <c-t> :CtrlP<CR>
 
 " ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
+map <Leader>z :ZoomWin<CR>
+
+" Bits stolen from Gary Bernhardt
+" bounce buffer
+nnoremap <leader><leader> <c-^>
+
+" edit/view in current directory
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
+" RENAME CURRENT FILE
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
 
 " Ack
 map <Leader>g :Ack<space>
@@ -71,7 +90,7 @@ imap jj <Esc>
 set history=100
 
 " show hidden buffers
-set nohidden
+set hidden
 
 " don't beep
 set visualbell
