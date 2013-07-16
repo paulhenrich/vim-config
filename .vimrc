@@ -56,9 +56,27 @@ set noequalalways
 " Ctrl-P config
 map <c-t> :CtrlP<CR>
 
+" run in ruby
+map <leader>r :w\|:!ruby %<cr>
+" plain ol rspec
+map <leader>s :w\|:!rspec %<cr>
+
+" rspec it in bundle
+map <leader>br :w\|:!bundle exec rspec %<cr>
+
+function! RSpecCurrent()
+  w
+  execute("!bundle exec rspec " . expand("%p") . ":" . line("."))
+endfunction
+
+map <leader>rr :call RSpecCurrent() <CR>
+command! RSpecCurrent call RSpecCurrent()
+
 " ZoomWin configuration
 map <Leader>z :ZoomWin<CR>
 
+" bounce to test
+map <leader>a :A<cr>
 " Bits stolen from Gary Bernhardt
 " bounce buffer
 nnoremap <leader><leader> <c-^>
@@ -113,7 +131,7 @@ endif
 if (&t_Co > 7)
   "colorscheme summerfruit256
   set bg=dark
-  colorscheme wombat256
+  colorscheme solarized
   "assume we can use !open
   map <Leader>o :w\|:!open %<CR>
 endif
@@ -143,7 +161,7 @@ nnoremap Q gq
 
 " catch trailing whitespace
 set listchars=tab:>-,trail:·,eol:$
-nmap <silent> <leader>s :set nolist!<CR>
+"nmap <silent> <leader>s :set nolist!<CR>
 
 " Swapfiles. Meh. Using Git instead.
 set nobackup
@@ -168,12 +186,12 @@ set showmatch
 
 set wildmenu
 
-set foldenable
-set foldmethod=indent
-set foldlevel=3
-set foldnestmax=2
-set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-set foldcolumn=3
+"set foldenable
+"set foldmethod=indent
+"set foldlevel=3
+"set foldnestmax=2
+"set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+"set foldcolumn=3
 
 " automatically open folds at the starting cursor position
 " autocmd BufReadPost .foldo!
