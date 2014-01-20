@@ -24,10 +24,10 @@ set guitablabel=%t
 set cursorline
 
 set bg=dark
-"colorscheme ir_black
+colorscheme ir_black
 "colorscheme summerfruit256
 "set background=light
-colorscheme solarized
+"colorscheme solarized
 
 
 if has("gui_macvim")

@@ -50,27 +50,12 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " seemingly necessary for zoomwin
 set noequalalways
 
-" Command-T configuration
-"let g:CommandTMaxHeight=20
-
 " Ctrl-P config
 map <c-t> :CtrlP<CR>
+map <leader>t :CtrlP<CR>
 
-" run in ruby
-map <leader>r :w\|:!ruby %<cr>
-" plain ol rspec
-map <leader>s :w\|:!rspec %<cr>
-
-" rspec it in bundle
-map <leader>br :w\|:!bundle exec rspec %<cr>
-
-function! RSpecCurrent()
-  w
-  execute("!bundle exec rspec " . expand("%p") . ":" . line("."))
-endfunction
-
-map <leader>rr :call RSpecCurrent() <CR>
-command! RSpecCurrent call RSpecCurrent()
+" async rspec
+map <leader>s :w\|:silent !echo "clear; rspec --color %" > test-commands<cr>
 
 " ZoomWin configuration
 map <Leader>z :ZoomWin<CR>
@@ -80,11 +65,6 @@ map <leader>a :A<cr>
 " Bits stolen from Gary Bernhardt
 " bounce buffer
 nnoremap <leader><leader> <c-^>
-
-" edit/view in current directory
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-map <leader>v :view %%
 
 " RENAME CURRENT FILE
 function! RenameFile()
@@ -99,7 +79,7 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 " Ack
-map <Leader>g :Ack<space>
+map <Leader>g :!git grep<space>
 
 " lazy escape
 imap jj <Esc>
@@ -131,7 +111,7 @@ endif
 if (&t_Co > 7)
   "colorscheme summerfruit256
   set bg=dark
-  colorscheme solarized
+  "colorscheme solarized
   "assume we can use !open
   map <Leader>o :w\|:!open %<CR>
 endif
@@ -155,9 +135,6 @@ set smartcase
 
 " Toggle search results with spacebar
 map <Space> :set hlsearch!<cr>
-
-" use Q for formatting per :h gq
-nnoremap Q gq
 
 " catch trailing whitespace
 set listchars=tab:>-,trail:·,eol:$
@@ -185,18 +162,6 @@ set scrolloff=3
 set showmatch
 
 set wildmenu
-
-"set foldenable
-"set foldmethod=indent
-"set foldlevel=3
-"set foldnestmax=2
-"set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-"set foldcolumn=3
-
-" automatically open folds at the starting cursor position
-" autocmd BufReadPost .foldo!
-
-" Only do this part when compiled with support for autocommands.
 
 if has("autocmd")
 
@@ -283,36 +248,6 @@ if has('statusline')
   if has('title')
     set titlestring=%t%(\ [%R%M]%)
   endif
-endif
-
-" Helper for creating Color Schemes (from vimcasts.org); ctrl-shift-P
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" quick toggle relative number per http://news.ycombinator.com/item?id=2907730
-" modified to default to number & skip norelativenumber
-
-if v:version >= 703
-  set number
-  let s:relativenumber = 1
-  function! <SID>ToggleRelativeNumber()
-    if s:relativenumber == 0
-      set number
-      let s:relativenumber = 1
-    elseif s:relativenumber == 1
-      set relativenumber
-      let s:relativenumber = 0
-    endif
-  endfunction
-  map <silent><F10> :call <SID>ToggleRelativeNumber()<CR>
-else
-  set number
 endif
 
 " up/down move between visual lines instead of actual lines when wrapped
