@@ -3,16 +3,16 @@ set nocompatible          " We're running Vim, not Vi!
 filetype off              " Only temporarily while we load pathogen...
 
 " Load Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 Bundle 'jQuery'
 Bundle "git://github.com/tpope/vim-fugitive.git"
 Bundle "git://github.com/tpope/vim-git.git"
+Bundle "git://github.com/wincent/command-t.git"
+Bundle "scrooloose/nerdtree"
 Bundle "git://github.com/tpope/vim-repeat.git"
 Bundle "git://github.com/tpope/vim-surround.git"
 Bundle "git://github.com/tpope/vim-vividchalk.git"
@@ -25,14 +25,15 @@ Bundle "https://github.com/tpope/vim-rails.git"
 Bundle "git://github.com/altercation/vim-colors-solarized.git"
 Bundle "https://github.com/jgdavey/vim-railscasts.git"
 Bundle "https://github.com/mileszs/ack.vim"
-Bundle "https://github.com/kogakure/vim-sparkup"
 Bundle "https://github.com/Lokaltog/vim-powerline"
 Bundle "https://github.com/othree/html5.vim"
 Bundle "https://github.com/tpope/vim-markdown.git"
 Bundle "https://github.com/vim-scripts/mayansmoke"
 Bundle "git://github.com/tpope/vim-endwise.git"
 Bundle "git://github.com/ervandew/supertab.git"
-Bundle "https://github.com/kien/ctrlp.vim.git"
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 let mapleader = ","
 
@@ -45,14 +46,17 @@ set backspace=indent,eol,start
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :split $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" jump to far right or left of line
+map L $
+map H ^
 
 " borrowed from the Janus vimrc
 " seemingly necessary for zoomwin
 set noequalalways
 
 " Ctrl-P config
-map <c-t> :CtrlP<CR>
-map <leader>t :CtrlP<CR>
+map <c-t> :CommandT<CR>
+map <leader>t :CommandT<CR>
 
 " async rspec
 map <leader>s :w\|:silent !echo "clear; rspec --color %" > test-commands<cr>
