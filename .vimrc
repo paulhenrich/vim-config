@@ -11,7 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 Bundle 'jQuery'
 Bundle "git://github.com/tpope/vim-fugitive.git"
 Bundle "git://github.com/tpope/vim-git.git"
-Bundle "git://github.com/wincent/command-t.git"
+Bundle "kien/ctrlp.vim"
 Bundle "scrooloose/nerdtree"
 Bundle "git://github.com/tpope/vim-repeat.git"
 Bundle "git://github.com/tpope/vim-surround.git"
@@ -55,8 +55,8 @@ map H ^
 set noequalalways
 
 " Ctrl-P config
-map <c-t> :CommandT<CR>
-map <leader>t :CommandT<CR>
+map <c-t> :CtrlP<CR>
+map <leader>t :CtrlP<CR>
 
 " async rspec
 map <leader>s :w\|:silent !echo "clear; rspec --color %" > test-commands<cr>
