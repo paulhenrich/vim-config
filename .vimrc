@@ -31,6 +31,7 @@ Bundle "https://github.com/tpope/vim-markdown.git"
 Bundle "https://github.com/vim-scripts/mayansmoke"
 Bundle "git://github.com/tpope/vim-endwise.git"
 Bundle "git://github.com/ervandew/supertab.git"
+Bundle "https://github.com/kien/rainbow_parentheses.vim"
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -270,3 +271,9 @@ nnoremap <C-l> <C-w>l
 
 " pinky saving remap;
 nnoremap ; :
+
+"Rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
