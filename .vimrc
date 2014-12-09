@@ -32,6 +32,7 @@ Bundle "https://github.com/vim-scripts/mayansmoke"
 Bundle "git://github.com/tpope/vim-endwise.git"
 Bundle "git://github.com/ervandew/supertab.git"
 Bundle "https://github.com/kien/rainbow_parentheses.vim"
+Bundle "git@github.com:elixir-lang/vim-elixir.git"
 
 call vundle#end()            " required
 filetype plugin indent on    " required
