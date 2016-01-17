@@ -33,6 +33,7 @@ Bundle "git://github.com/tpope/vim-endwise.git"
 Bundle "git://github.com/ervandew/supertab.git"
 Bundle "https://github.com/kien/rainbow_parentheses.vim"
 Bundle "git@github.com:elixir-lang/vim-elixir.git"
+Bundle "git@github.com:editorconfig/editorconfig-vim.git"
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -57,6 +58,15 @@ map H ^
 set noequalalways
 
 " Ctrl-P config
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for listing files. Fast and respects .gitignore
+	let g:ctrlp_use_caching = 0                           " ag is fast enough that CtrlP doesn't need to cache
+endif
+
+ 
 map <c-t> :CtrlP<CR>
 map <leader>t :CtrlP<CR>
 
@@ -115,9 +125,8 @@ endif
 
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
-  "colorscheme summerfruit256
-  set bg=dark
-  "colorscheme solarized
+  set bg=light
+  colorscheme summerfruit256
   "assume we can use !open
   map <Leader>o :w\|:!open %<CR>
 endif
@@ -202,7 +211,6 @@ if has("autocmd")
     "autocmd FileType javascript set ai sw=2 sts=2 et
     "autocmd FileType php set ai noet
   "augroup END
-  autocmd FileType css,scss,js set foldmethod=marker foldmarker={,}
   autocmd FileType markdown set wrap
 
   augroup module
