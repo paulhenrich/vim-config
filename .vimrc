@@ -8,7 +8,6 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-Bundle 'jQuery'
 Bundle "git://github.com/tpope/vim-fugitive.git"
 Bundle "git://github.com/tpope/vim-git.git"
 Bundle "kien/ctrlp.vim"
@@ -17,8 +16,6 @@ Bundle "git://github.com/tpope/vim-repeat.git"
 Bundle "git://github.com/tpope/vim-surround.git"
 Bundle "git://github.com/tpope/vim-vividchalk.git"
 Bundle "git://github.com/vim-ruby/vim-ruby.git"
-Bundle "git://github.com/msanders/snipmate.vim.git"
-Bundle "git://github.com/vim-scripts/ZoomWin.git"
 Bundle "git://github.com/tpope/vim-haml.git"
 Bundle "https://github.com/kchmck/vim-coffee-script.git"
 Bundle "https://github.com/tpope/vim-rails.git"
@@ -30,10 +27,8 @@ Bundle "https://github.com/othree/html5.vim"
 Bundle "https://github.com/tpope/vim-markdown.git"
 Bundle "https://github.com/vim-scripts/mayansmoke"
 Bundle "git://github.com/tpope/vim-endwise.git"
-Bundle "git://github.com/ervandew/supertab.git"
 Bundle "https://github.com/kien/rainbow_parentheses.vim"
 Bundle "git@github.com:elixir-lang/vim-elixir.git"
-Bundle "git@github.com:editorconfig/editorconfig-vim.git"
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -58,20 +53,115 @@ map H ^
 set noequalalways
 
 " Ctrl-P config
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+let g:path_to_matcher = "/Users/paulhenrich/bin/matcher"
 
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for listing files. Fast and respects .gitignore
-	let g:ctrlp_use_caching = 0                           " ag is fast enough that CtrlP doesn't need to cache
-endif
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
 
- 
+let g:ctrlp_match_func = { 'match': 'GoodMatch' }
+
+function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
+
+  " Create a cache file if not yet exists
+  let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
+  if !( filereadable(cachefile) && a:items == readfile(cachefile) )
+    call writefile(a:items, cachefile)
+  endif
+  if !filereadable(cachefile)
+    return []
+  endif
+
+  " a:mmode is currently ignored. In the future, we should probably do
+  " something about that. the matcher behaves like "full-line".
+  let cmd = g:path_to_matcher.' --limit '.a:limit.' --manifest '.cachefile.' '
+  if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
+    let cmd = cmd.'--no-dotfiles '
+  endif
+  let cmd = cmd.a:str
+
+  return split(system(cmd), "\n")
+
+endfunction
+
 map <c-t> :CtrlP<CR>
 map <leader>t :CtrlP<CR>
 
 " async rspec
 map <leader>s :w\|:silent !echo "clear; rspec --color %" > test-commands<cr>
+map <leader>r :w\|!rspec %<cr>
+
+
+"" test runner from gbh
+function! MapCR()
+  nnoremap <cr> :call RunTestFile()<cr>
+endfunction
+call MapCR()
+nnoremap <leader>T :call RunNearestTest()<cr>
+"" nnoremap <leader>r :call RunTests('')<cr>
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Are we in a test file?
+    let in_test_file = match(expand("%"), '\(_spec.rb\|_test.rb\|test_.*\.py\|_test.py\)$') != -1
+
+    " Run the tests for the previously-marked file (or the current file if
+    " it's a test).
+    if in_test_file
+        call SetTestFile(command_suffix)
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+function! SetTestFile(command_suffix)
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@% . a:command_suffix
+endfunction
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    if expand("%") != ""
+      :w
+    end
+    " The file is executable; assume we should run
+    if executable(a:filename)
+      exec ":!./" . a:filename
+    " Project-specific test script
+    elseif filereadable("script/test")
+        exec ":!script/test " . a:filename
+    " Fall back to the .test-commands pipe if available, assuming someone
+    " is reading the other side and running the commands
+    elseif filewritable(".test-commands")
+      let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
+      exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
+
+      " Write an empty string to block until the command completes
+      sleep 100m " milliseconds
+      :!echo > .test-commands
+      redraw!
+    " Fall back to a blocking test run with Bundler
+    elseif filereadable("bin/rspec")
+      exec ":!bin/rspec --color " . a:filename
+    elseif filereadable("Gemfile") && strlen(glob("spec/**/*.rb"))
+      exec ":!bundle exec rspec --color " . a:filename
+    elseif filereadable("Gemfile") && strlen(glob("test/**/*.rb"))
+      exec ":!bin/rails test " . a:filename
+    " If we see python-looking tests, assume they should be run with Nose
+    elseif strlen(glob("test/**/*.py") . glob("tests/**/*.py"))
+      exec "!nosetests " . a:filename
+    end
+endfunction
+
 
 " ZoomWin configuration
 map <Leader>z :ZoomWin<CR>
@@ -103,6 +193,10 @@ imap jj <Esc>
 " keep more history
 set history=100
 
+" resize splits sensibly
+set winwidth=100
+set winminwidth=35
+
 " show hidden buffers
 set hidden
 
@@ -125,12 +219,14 @@ endif
 
 "ColorScheme if terminal has colors (not in GUI)
 if (&t_Co > 7)
-  set bg=light
-  colorscheme summerfruit256
+  set bg=dark
+  colorscheme wombat256
+  "colorscheme summerfruit256
   "assume we can use !open
   map <Leader>o :w\|:!open %<CR>
 endif
 
+map <Leader><Leader> :w\|:!./%<CR>
 " Indentation and Tab handling
 set smarttab
 set expandtab

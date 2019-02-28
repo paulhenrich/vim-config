@@ -6,7 +6,7 @@
 "let &columns=g:halfsize
 
 " Font
-set guifont=Menlo:h15.00
+set guifont=Menlo:h13.00
 
 " Use console dialogs
 "set guioptions+=c
@@ -23,7 +23,6 @@ set guitablabel=%t
 " add a cursorline
 set cursorline
 
-set bg=dark
 "colorscheme ir_black
 "colorscheme summerfruit256
 set background=light
